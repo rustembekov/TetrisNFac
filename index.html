@@ -1,0 +1,158 @@
+<html>
+
+<head>
+
+    <title>Tetris</title>
+    <link rel="shortcut icon" href="source/screen/Tetris.png" type="image/x-icon; charset=binary">
+    <link rel="icon" href="source/screen/Tetris.png" type="image/x-icon; charset=binary">
+    <link rel="apple-touch-icon" href="source/screen/Tetris.png">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Tetris">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.75, user-scalable=no">
+    <script language="javascript" type="text/javascript" src="extends/comExtends.js"></script>
+    <script language="javascript" src="extends/commands.js"></script>
+    <script language="javascript" src="extends/commandSounds.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="source/origin/style/style.css">
+    <script language="javascript" type="text/javascript" src="source/origin/objects.js"></script>
+    <script language="javascript" type="text/javascript" src="source/components/square.js"></script>
+    <script language="javascript" type="text/javascript" src="source/components/turnZ.js"></script>
+    <script language="javascript" type="text/javascript" src="source/components/standardZ.js"></script>
+    <script language="javascript" type="text/javascript" src="source/components/standardI.js"></script>
+    <script language="javascript" type="text/javascript" src="source/components/standardL.js"></script>
+    <script language="javascript" type="text/javascript" src="source/components/turnLeft.js"></script>
+    <script language="javascript" type="text/javascript" src="source/components/standardT.js"></script>
+    <script language="javascript" type="text/javascript" src="source/origin/gui.js"></script>
+    <script language="javascript" type="text/javascript" src="source/origin/control.js"></script>
+    <script language="javascript" type="text/javascript" src="source/origin/gradient.js"></script>
+    <script language="javascript" type="text/javascript" src="source/origin/leaderboards.js"></script>
+</head>
+<body>
+<script>
+    $(function () {
+        $('#playbutton').click(function (event) {
+            if (gameOver) {
+                setup();
+                gameOver = false;
+                running = true;
+            }
+            else {
+                $('#gameOverMusic').pause();
+                running = !running;
+                graphics.start = false;
+            }
+        });
+        $('#leftarrow').click(function (event) {
+            if (running) {
+
+                blockObjekt.bewegungLinks();
+            }
+        });
+
+        $('#downarrow').click(function (event) {
+            if (running) {
+                speed = 0.35;
+                defaultSpeed = 0.35;
+                setTimeout(function () {
+                    speed = resetSpeed;
+                    defaultSpeed = resetSpeed;
+                }, 150);
+            }
+        });
+        $('#rightarrow').click(function (event) {
+            if (running) {
+                blockObjekt.bewegungRechts();
+            }
+        });
+
+        $('#drehen').click(function (event) {
+            if (running) {
+                blockObjekt.drehen();
+            }
+        });
+
+        $('#button').click(function (event) {
+            running = false;
+            dialogOffen = true;
+            $("#dialog").show();
+            $('#dialog').dialog({
+                modal: true,
+                draggable: true,
+                title: "How to play",
+                close: function (event, ui) {
+                    dialogOffen = false;
+                }
+            });
+        });
+        $('#score').click(function (event) {
+            running = false;
+            dialogOffen = true;
+            $("#scores").show();
+            $('#scores').dialog({
+                modal: true,
+                draggable: true,
+                title: "Highscores",
+                close: function (event, ui) {
+                    dialogOffen = false;
+                }
+            });
+        });
+    });
+
+    function trigger_touchbedienung(art, elem, code) {
+        if (art == 0) {
+            $(elem).trigger("contextmenu");
+        } else if (art == 1) {
+            $(elem).trigger('dblclick');
+        } else if (art == 2) {
+            var touche = $.Event('keyPressed');
+            touche.keyCode = code;
+            $(elem).trigger(touche);
+        } else {
+            return false;
+        }
+    }
+</script>
+<div id="gradient">
+    <div id="main">
+        <div id="canvasDiv">
+        </div>
+        <div id="steuerung">
+            <button type="button" id="button">Help</button>
+            <button type="button" id="playbutton" class="control">&#9658;</button>
+            <button type="button" id="leftarrow" class="control">&#8678;</button>
+            <button type="button" id="downarrow" class="control">&#8681;</button>
+            <button type="button" id="rightarrow" class="control">&#8680;</button>
+            <button type="button" id="drehen" class="control">&#8635;</button>
+        </div>
+        <br>
+        <div>
+            <canvas id="anzeige" width="300" height="110"></canvas>
+            <button type="button" id="score" style="margin-left:90px;width: 180px; height: 30px">LeaderBoards</button>
+        </div>
+    </div>
+    <div id="dialog" title="How to play" style="display:none;">
+        <p><b>With keyboard:</b></p>
+        <p>P or Enter: &#9658; / &#10074;&#10074;</p>
+        <p>W or &uarr;: rotate</p>
+        <p>A or &larr;: move left</p>
+        <p>S or &darr;: falling faster</p>
+        <p>D or &rarr;: move right</p>
+        <p>spacebar: place instantly</p>
+    </div>
+    <div id="scores" title="Highscores" style="display:none; ">
+        <div id="localscores"><p><b>Local:</b></p></div>
+    </div>
+</div>
+<audio id="dropMusic" src="./sounds/Drop.wav"></audio>
+<audio id="gameOverMusic" src="./sounds/Gameover.wav"></audio>
+<audio id="lineClear" src="./sounds/Lineclear.wav"></audio>
+
+</body>
+</html>
