@@ -1,6 +1,6 @@
 # Tetris
 
-[](https://github.com/rustembekov/TetrisNFac/blob/master/source/screen/tetris.png?raw=true)
+![](https://github.com/rustembekov/TetrisNFac/blob/master/source/screen/tetris_game.png?raw=true)
 ## Game for the NFactorial
 
 ## Implementation through JS
