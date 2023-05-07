@@ -2,6 +2,7 @@ var bewegenOK = true;
 var einfachBewegt;
 var resetSpeed = 0.03;
 var soundGameOver = document.getElementById('gameOverMusic');
+var musicStart = new Audio("./sounds/Video_Game_Players_-_Tetris_Theme_(musmore.com).mp3")
 
 
 function Control(object) {
@@ -11,6 +12,7 @@ function Control(object) {
         if ((keyCode == 13 || keyCode == 80) && !dialogOffen) {
             running = !running;
             graphics.start = false;
+            musicStart.play();
         }
 
         if ((running && object.isMoving) || (running && object.lastMove)) {

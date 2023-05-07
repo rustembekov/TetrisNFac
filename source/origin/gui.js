@@ -1,6 +1,6 @@
 var gameoverSound = new Audio("./sounds/Gameover.wav");
 var soundLineClear = new Audio("./sounds/Lineclear.wav");
-
+var musicStart = new Audio("./sounds/Video_Game_Players_-_Tetris_Theme_(musmore.com).mp3")
 function GUI() {
     this.score = 0;
     this.scoreX = 235;
@@ -98,6 +98,7 @@ function GUI() {
         vtx.font = "35px impact";
         vtx.fillText("Game Over!", 5, canvas.height / 2 - this.blockHoehe);
         gameoverSound.play();
+        musicStart.pause();
     }
     this.updateScore = function () {
         this.score += this.blockColumnGrid;
@@ -150,9 +151,10 @@ function GUI() {
         ctx.fillText(graphics.score, this.scoreX, 50);
         vtx.fillStyle = linearGradient;
         if (this.start) {
-
+            musicStart.play();
             vtx.fillText("Press Enter to Start!", (1.5 * this.blockBreite - 1) - 20, canvas.height / 2 - this.blockHoehe);
         } else if (!gameOver) {
+            musicStart.pause();
             vtx.fillText("PAUSED", canvas.width / 3, this.blockHoehe);
             vtx.fillText("Press Enter to Continue!", this.blockBreite / 2, 2 * this.blockHoehe);
             vtx.font = "18px Bold"
