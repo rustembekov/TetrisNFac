@@ -5,6 +5,8 @@
 
 ## Implementation through JS
 
+## Gradient also have which is changing
+There is a gradient that changes the background background if you want to see you need to download the project and run it through the compiler
 
 ## There are levels on points.
 
