@@ -32,7 +32,6 @@
 
 - spacebar: instant drop
 
-![](/Users/macbook/Desktop/Снимок экрана 2023-05-08 в 03.20.20.png)
 ## If you want more information, click "**_Help_**"
 
 ## Click the "_LeaderBoards_" button to see the top 10 players
