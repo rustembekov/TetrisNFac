@@ -1,6 +1,8 @@
 var bewegenOK = true;
 var einfachBewegt;
 var resetSpeed = 0.03;
+var soundGameOver = document.getElementById('gameOverMusic');
+
 
 function Control(object) {
     this.xLeft = object.x - 1;

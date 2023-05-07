@@ -4,9 +4,10 @@
 
     <title>Tetris</title>
     <link rel="shortcut icon" href="source/screen/Tetris.png" type="image/x-icon; charset=binary">
-    <link rel="icon" href="source/screen/Tetris.png" type="image/x-icon; charset=binary">
-    <link rel="apple-touch-icon" href="source/screen/Tetris.png">
+    <link rel="icon" href="source/screen/tetris_game.png" type="image/x-icon; charset=binary">
+    <link rel="apple-touch-icon" href="https://tetris.wiki/images/5/52/Tetris_%28N3TWORK%29_icon.png">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="helpStyle.css">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -35,6 +36,7 @@
 </head>
 <body>
 <script>
+
     $(function () {
         $('#playbutton').click(function (event) {
             if (gameOver) {
@@ -43,7 +45,6 @@
                 running = true;
             }
             else {
-                $('#gameOverMusic').pause();
                 running = !running;
                 graphics.start = false;
             }
@@ -138,21 +139,31 @@
         </div>
     </div>
     <div id="dialog" title="How to play" style="display:none;">
-        <p><b>With keyboard:</b></p>
-        <p>P or Enter: &#9658; / &#10074;&#10074;</p>
-        <p>W or &uarr;: rotate</p>
-        <p>A or &larr;: move left</p>
-        <p>S or &darr;: falling faster</p>
-        <p>D or &rarr;: move right</p>
-        <p>spacebar: place instantly</p>
+        <h1>With keyboard:</h1>
+        <h3>P or Enter: &#9658; / &#10074;&#10074;</h3>
+        <h3>W or &uarr;: rotate</h3>
+        <h3>A or &larr;: move left</h3>
+        <h3>S or &darr;: falling faster</h3>
+        <h3>D or &rarr;: move right</h3>
+        <h3>spacebar: place instantly</h3>
+        <div class='loader loader1'>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="scores" title="Highscores" style="display:none; ">
         <div id="localscores"><p><b>Local:</b></p></div>
     </div>
 </div>
-<audio id="dropMusic" src="./sounds/Drop.wav"></audio>
-<audio id="gameOverMusic" src="./sounds/Gameover.wav"></audio>
-<audio id="lineClear" src="./sounds/Lineclear.wav"></audio>
 
 </body>
 </html>

@@ -1,6 +1,5 @@
-var soundGameOver = document.getElementById('gameOverMusic');
-var soundDrop = document.getElementById('dropMusic');
-var soundLineClear = document.getElementById('lineClear');
+var gameoverSound = new Audio("./sounds/Gameover.wav");
+var soundLineClear = new Audio("./sounds/Lineclear.wav");
 
 function GUI() {
     this.score = 0;
@@ -33,6 +32,7 @@ function GUI() {
     }
 
     this.deleteVolleReihe = function (index) {
+
         for (var i = 0; i < graphics.blockColumnGrid; i++) {
             graphics.gridArray[index][i] = 0;
         }
@@ -97,10 +97,10 @@ function GUI() {
         vtx.fillText("Score: " + this.score, 5, canvas.height / 2 + 4 * this.blockHoehe);
         vtx.font = "35px impact";
         vtx.fillText("Game Over!", 5, canvas.height / 2 - this.blockHoehe);
+        gameoverSound.play();
     }
     this.updateScore = function () {
         this.score += this.blockColumnGrid;
-
         if (this.score > 9) {
             this.scoreX = 225;
         }
@@ -123,6 +123,8 @@ function GUI() {
         }
         this.drawAnzeige();
         this.updateLevel();
+        soundLineClear.play();
+
     }
 
     this.updateRows = function (index) {
