@@ -125,7 +125,7 @@ function GUI() {
         this.drawAnzeige();
         this.updateLevel();
         soundLineClear.play();
-
+        musicStart.play();
     }
 
     this.updateRows = function (index) {
